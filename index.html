@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blank Canvas Studio Co. | Premium Print-on-Demand Tees</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #666;
+        }
+
+        .cart-icon {
+            font-size: 1.2rem;
+            cursor: pointer;
+            background: #1a1a1a;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/1126996/pexels-photo-1126996.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: #1a1a1a;
+            padding: 12px 30px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        /* Products Section */
+        .products, .how-it-works, .contact {
+            padding: 80px 0;
+        }
+
+        .products h2, .how-it-works h2, .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+        }
+
+        .product-card p {
+            color: #555;
+            margin-bottom: 10px;
+            padding: 0 10px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin: 10px 0;
+        }
+
+        .add-to-cart {
+            background-color: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+            border-radius: 5px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #333;
+        }
+
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .step-number {
+            background-color: #1a1a1a;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        /* Contact Form */
+        .contact form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .contact input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        .contact button {
+            border-radius: 5px;
+        }
+
+        #form-message {
+            text-align: center;
+            margin-top: 15px;
+            color: green;
+            font-weight: 500;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            padding: 20px;
+            transition: right 0.3s;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-sidebar h3 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .cart-items {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .close-cart {
+            background: #ddd;
+            color: #1a1a1a;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .checkout-btn {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .contact form {
+                flex-direction: column;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header / Navigation -->
+<header>
+    <div class="container">
+        <div class="logo">
+            <h1>🎨 BLANK CANVAS STUDIO CO.</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon" id="cart-icon">
+            🛒 <span id="cart-count">0</span>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h2>Wear Your Creativity</h2>
+            <p>Premium print-on-demand t-shirts designed by you, printed for the world.</p>
+            <button class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
+        </div>
+    </div>
+</section><!-- Paste this anywhere in your HTML where you want the buy button -->
+<script src="https://js.stripe.com/v3/"></script>
+<stripe-buy-button
+  buy-button-id="your_buy_button_id_here"
+  publishable-key="pk_test_your_test_key_here"
+  client-reference-id="optional_cart_id"
+  customer-email="customer@example.com"
+>
+</stripe-buy-button>
+
+<!-- Products Section -->
+<section id="products" class="products">
+    <div class="container">
+        <h2>✨ Our Collection</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be injected via JS -->
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="how-it-works">
+    <div class="container">
+        <h2>📦 How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Choose Your Design</h3>
+                <p>Browse our collection and pick your favorite t-shirt design.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Select Size & Color</h3>
+                <p>Pick the perfect fit and color that suits your style.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>We Print & Ship</h3>
+                <p>We print on demand and ship directly to your door.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact / Newsletter -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2>📧 Stay in the Loop</h2>
+        <p>Get early access to new drops and exclusive offers.</p>
+        <form id="newsletter-form">
+            <input type="email" id="email" placeholder="Your email address" required>
+            <button type="submit" class="btn-primary">Subscribe</button>
+        </form>
+        <p id="form-message"></p>
+    </div>
+</section>
+
+<!-- Cart Sidebar -->
+<div class="overlay" id="overlay"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+    <h3>Your Cart 🛒</h3>
+    <ul class="cart-items" id="cart-items-list">
+        <li>Your cart is empty</li>
+    </ul>
+    <div class="cart-total" id="cart-total">Total: $0</div>
+    <button class="close-cart" id="close-cart">Continue Shopping</button>
+    <button class="checkout-btn" id="checkout-btn">Checkout</button>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Blank Canvas Studio Co. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Instagram</a> | <a href="#">Twitter</a> | <a href="#">Pinterest</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Product data
+    const products = [
+        {
+            id: 1,
+            name: "Abstract Flow Tee",
+            price: 28,
+            image: "https://images.pexels.com/photos/12706924/pexels-photo-12706924.jpeg?auto=compress&cs=tinysrgb&w=600",
+            description: "Fluid abstract art in motion"
+        },
+        {
+            id: 2,
+            name: "Minimalist Lines",
+            price: 28,
+            image: "https://images.pexels.com/photos/6436427/pexels-photo-6436427.jpeg?auto=compress&cs=tinysrgb&w=600",
+            description: "Clean lines, bold statement"
+        },
+        {
+            id: 3,
+            name: "Blank Canvas Signature",
+            price: 32,
+            image: "https://images.pexels.com/photos/12074237/pexels-photo-12074237.jpeg?auto=compress&cs=tinysrgb&w=600",
+            description: "Our signature artist tee"
+        },
+        {
+            id: 4,
+            name: "Studio Artist Tee",
+            price: 30,
+            image: "https://images.pexels.com/photos/6436428/pexels-photo-6436428.jpeg?auto=compress&cs=tinysrgb&w=600",
+            description: "For the creative soul"
+        }
+    ];
+
+    // Cart array
+    let cart = [];
+
+    // Load products on page load
+    document.addEventListener("DOMContentLoaded", () => {
+        displayProducts();
+        updateCartCount();
+        updateCartDisplay();
+        
+        // Newsletter form handler
+        const newsletterForm = document.getElementById("newsletter-form");
+        if (newsletterForm) {
+            newsletterForm.addEventListener("submit", handleNewsletterSubmit);
+        }
+        
+        // Cart icon click
+        const cartIcon = document.getElementById("cart-icon");
+        const cartSidebar = document.getElementById("cart-sidebar");
+        const overlay = document.getElementById("overlay");
+        const closeCartBtn = document.getElementById("close-cart");
+        
+        cartIcon.addEventListener("click", () => {
+            cartSidebar.classList.add("open");
+            overlay.classList.add("active");
+            updateCartDisplay();
+        });
+        
+        closeCartBtn.addEventListener("click", () => {
+            cartSidebar.classList.remove("open");
+            overlay.classList.remove("active");
+        });
+        
+        overlay.addEventListener("click", () => {
+            cartSidebar.classList.remove("open");
+            overlay.classList.remove("active");
+        });
+        
+        // Checkout button
+        const checkoutBtn = document.getElementById("checkout-btn");
+        checkoutBtn.addEventListener("click", () => {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Add some products first!");
+            } else {
+                alert("Thank you for your order! This is a demo. In a real store, you would proceed to payment.");
+                cart = [];
+                updateCartCount();
+                updateCartDisplay();
+                cartSidebar.classList.remove("open");
+                overlay.classList.remove("active");
+            }
+        });
+    });
+
+    // Display products in grid
+    function displayProducts() {
+        const productGrid = document.getElementById("product-grid");
+        if (!productGrid) return;
+        
+        productGrid.innerHTML = "";
+        
+        products.forEach(product => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("product-card");
+            
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <div class="price">$${product.price}</div>
+                <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+            `;
+            
+            productGrid.appendChild(productCard);
+        });
+        
+        // Add event listeners to all Add to Cart buttons
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", (e) => {
+                const productId = parseInt(button.getAttribute("data-id"));
+                addToCart(productId);
+            });
+        });
+    }
+
+    // Add product to cart
+    function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        if (product) {
+            cart.push(product);
+            updateCartCount();
+            updateCartDisplay();
+            
+            // Show confirmation
+            const cartSidebar = document.getElementById("cart-sidebar");
+            cartSidebar.classList.add("open");
+            document.getElementById("overlay").classList.add("active");
+            
+            // Show temporary message on button
+            const buttons = document.querySelectorAll(".add-to-cart");
+            buttons.forEach(btn => {
+                if (parseInt(btn.getAttribute("data-id")) === productId) {
+                    const originalText = btn.textContent;
+                    btn.textContent = "✓ Added!";
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                    }, 1000);
+                }
+            });
+        }
+    }
+
+    // Update cart count display
+    function updateCartCount() {
+        const cartCountSpan = document.getElementById("cart-count");
+        if (cartCountSpan) {
+            cartCountSpan.textContent = cart.length;
+        }
+    }
+    
+    // Update cart sidebar display
+    function updateCartDisplay() {
+        const cartItemsList = document.getElementById("cart-items-list");
+        const cartTotalDiv = document.getElementById("cart-total");
+        
+        if (!cartItemsList) return;
+        
+        if (cart.length === 0) {
+            cartItemsList.innerHTML = "<li style='text-align:center; color:#999;'>Your cart is empty</li>";
+            cartTotalDiv.textContent = "Total: $0";
+            return;
+        }
+        
+        // Group cart items by product
+        const cartMap = new Map();
+        cart.forEach(item => {
+            if (cartMap.has(item.id)) {
+                cartMap.set(item.id, {
+                    ...item,
+                    quantity: cartMap.get(item.id).quantity + 1
+                });
+            } else {
+                cartMap.set(item.id, {
+                    ...item,
+                    quantity: 1
+                });
+            }
+        });
+        
+        let total = 0;
+        cartItemsList.innerHTML = "";
+        
+        cartMap.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span><strong>${item.name}</strong> x${item.quantity}</span>
+                <span>$${itemTotal}</span>
+                <button class="remove-item" data-id="${item.id}" style="background:#ff4444; color:white; border:none; padding:2px 8px; border-radius:3px; cursor:pointer;">✕</button>
+            `;
+            cartItemsList.appendChild(li);
+        });
+        
+        cartTotalDiv.textContent = `Total: $${total}`;
+        
+        // Add remove functionality
+        document.querySelectorAll(".remove-item").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const productId = parseInt(btn.getAttribute("data-id"));
+                removeFromCart(productId);
+            });
+        });
+    }
+    
+    // Remove item from cart
+    function removeFromCart(productId) {
+        const index = cart.findIndex(item => item.id === productId);
+        if (index !== -1) {
+            cart.splice(index, 1);
+            updateCartCount();
+            updateCartDisplay();
+        }
+    }
+
+    // Handle newsletter signup
+    function handleNewsletterSubmit(event) {
+        event.preventDefault();
+        const emailInput = document.getElementById("email");
+        const messageDiv = document.getElementById("form-message");
+        
+        if (emailInput && emailInput.value && emailInput.value.includes("@")) {
+            messageDiv.textContent = `🎉 Thanks for subscribing, ${emailInput.value}! You'll hear from us soon.`;
+            messageDiv.style.color = "green";
+            emailInput.value = "";
+            
+            // Store in localStorage
+            localStorage.setItem("newsletterEmail", emailInput.value);
+            
+            // Clear message after 5 seconds
+            setTimeout(() => {
+                messageDiv.textContent = "";
+            }, 5000);
+        } else {
+            messageDiv.textContent = "❌ Please enter a valid email address.";
+            messageDiv.style.color = "red";
+            
+            setTimeout(() => {
+                messageDiv.textContent = "";
+            }, 3000);
+        }
+    }
+
+    // Scroll to products section
+    function scrollToProducts() {
+        document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+</script>
+
+</body>
+</html>
